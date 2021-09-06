@@ -58,9 +58,19 @@ def load_data(data_dir):
     be a list of integer labels, representing the categories for each of the
     corresponding `images`.
     """
-    raise NotImplementedError
+    images = []
+    labels = []
+    for i in range(43):
+        path = './' + data_dir + '/' + str(i)
+        images_names = os.listdir(path)
+        for img in images_names:
+            im = cv2.imread(path +'/'+ img)
+            im = cv2.resize(im, (30, 30))
+            images.append(im)
+            labels.append(i)
 
 
+    return (images, labels)
 def get_model():
     """
     Returns a compiled convolutional neural network model. Assume that the
